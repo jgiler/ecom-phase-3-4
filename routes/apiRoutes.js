@@ -18,6 +18,7 @@ router.get("/products", function(req, res) {
     }
   );
 });
+
 router.get("/contacts", function(req, res) {
   connection.query("SELECT * FROM contacts", function(err, data) {
     err ? res.send(err) : res.json({ contacts: data });
@@ -33,6 +34,5 @@ router.get("/productfilter/:category", function(req, res) {
     }
   );
 });
-
 
 module.exports = router;
