@@ -1,6 +1,8 @@
 const mysql = require("mysql"); // allows us to connect to mysql
 const router = require("express").Router();
-require("dotenv").config();
+require("dotenv").config(); // allows creation of .env file. 
+
+
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -9,6 +11,7 @@ const connection = mysql.createConnection({
 });
 
 connection.connect();
+
 
 router.get("/products", function(req, res) {
   connection.query(
