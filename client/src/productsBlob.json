@@ -1,0 +1,88 @@
+
+{
+   "products" :[{
+       "name":"Chill PJs",
+       "price": 49.99,
+       "description": "Get our most comfortable silk pajamas.",
+       "image": "https://media1.popsugar-assets.com/files/thumbor/5s3OJI1OgMxcevd8tYbpOHbRAZc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/11/24/037/n/3019466/45bf2a6ca5b82c81_NM-4VEG_mz/i/Hanro-Men-Silk-Two-Piece-Pajama-Set-398.jpg",
+       "category": "Clothes"
+   },
+   {
+       "name": "Chill Mug",
+       "price": 5.99,
+       "description": "Pour your coffee, relax, and drink with our fun chill mug.",
+       "image": "https://ctl.s6img.com/society6/img/AhMbDUzdgBUCRAqYZvodzy6ajck/w_700/coffee-mugs/small/right/greybg/~artwork,fw_4602,fh_1998,fx_2486,fy_-29,iw_2080,ih_2080/s6-original-art-uploads/society6/uploads/misc/4ff6f83c6d1c474ca7e45cabf77391d8/~~/just-chill451395-mugs.jpg",
+       "category": "Item"
+   },
+   {
+       "name": "Chill Bed",
+       "price": 3999.99,
+       "description": "This bed is perfect for a day of just laying in bed. Comes with a built in tv. Size king.",
+       "image": "https://jetplanesandchampagne.com/wp-content/uploads/2018/05/Webp.net-resizeimage-6-418x280.jpg",
+       "category": "Bedroom"
+   },
+   {
+       "name": "Chill TV",
+       "price": 1499,
+       "description": "Our Best TV",
+       "image": "https://assets.pcmag.com/media/images/628849-tv-s-for-the-super-bowl.jpg?thumb=y&width=810&height=456",
+       "category": "Item"
+   },
+   {
+       "name": "Chill pillow",
+       "price": 9.99,
+       "description": "Sleep tight or Pillow fight! Customers love this pillow for it is like a cloud.",
+       "image": "https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201922/0097/chill-dog-indoor-outdoor-lumbar-pillow-c.jpg",
+       "category": "Bedroom"
+   },
+   {
+       "name": "Chill massage chair",
+       "price": 499.99,
+       "description": "Relax, watch tv, and sleep on this top massage chair.",
+       "image": "https://teletronusa.com/pub/media/catalog/product/cache/image/700x700/e9c3970ab036de70892d86c6d221abfe/m/8/m8-carousel-pearl1.png",
+       "category": "Item"
+   },
+   {
+       "name": "Chill foot massager",
+       "price": 49.99,
+       "description": "Relax your feet with our quality foot massger.",
+       "image": "https://5.imimg.com/data5/TY/FS/MY-41804222/c22-leg-massager-500x500.jpg",
+       "category": "Item"
+   },
+   {
+       "name": "Chill stuffed animals",
+       "price": 9.99,
+       "description": "These are our favorite stuffed animals in a set",
+       "image": "https://images-na.ssl-images-amazon.com/images/I/51YLlAcgFGL._SX466_.jpg",
+       "category": "Item"
+   },
+   {
+       "name": "Chill hand massager",
+       "price": 39.99,
+       "description": "Calm your hands with our premium hand massager.",
+       "image": "https://images-na.ssl-images-amazon.com/images/I/71Bo6c6ZsfL._SL1500_.jpg",
+       "category": "Item"
+   },
+   {
+       "name": "Chill controller",
+       "price": 19.99,
+       "description": "Lost your remote? No problem! Our 4 in 1 controller will do the trick.",
+       "image": "https://i.ebayimg.com/images/g/CS0AAOSwlxRaYiQT/s-l300.jpg",
+       "category": "Item"
+   },
+   {
+       "name": "Chill slippers",
+       "price": 9.99,
+       "description": "Chill and walk with our soft slippers.",
+       "image": "https://i.pinimg.com/236x/6e/b8/de/6eb8deb771263eb62807a4a44e3815c5.jpg",
+       "category": "Clothes"
+   },
+   {
+       "name": "Chill neck pillow",
+       "price": 5.99,
+       "description": "Chill on the go with our top neck pillow.",
+       "image": "https://images-na.ssl-images-amazon.com/images/I/81gGBKOjauL._SY355_.jpg",
+       "category": "Bedroom"
+
+   }]
+}
