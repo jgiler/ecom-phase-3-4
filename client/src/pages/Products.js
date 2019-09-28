@@ -1,7 +1,9 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import Product from "../components/Product";
-import axios from "axios";
+import axios from "axios"; // Promise based HTTP client for the browser and node.js. Allows making http requests from node.js. 
+
+
 
 class Products extends React.Component {
   state = {
@@ -10,28 +12,50 @@ class Products extends React.Component {
     priceFilter: false
   };
 
-  componentDidMount() {
-    this.fetchProducts();
+  componentDidMount() { // used to setState to update your component when the date is retrieved 
+    const {type} = this.props.match.params // declares varible that finds parameter set in app.js
+    this.fetchProducts({type}); 
   }
 
-  fetchProducts = _ => {
-    axios.get("api/products").then(res => {
-   
+  fetchProducts = ({type}) => {
+    let ajaxRequest
+    if (type) {
+      // we want to filter on type
+      ajaxRequest = axios.get("/api/productfilter/"+encodeURIComponent(type))
+    } else {
+      ajaxRequest = axios.get("/api/products/")
+    }
+    ajaxRequest.then(res => {
+      console.log(res.data);
       this.setState({ products: res.data.products });
     }).catch(err => {
       console.log(err)
     });
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.type !== prevProps.match.params.type) {
+        console.log('route changed')
+        axios.get('/api/products').then(res => {
+          this.setState({products: res.data.products})
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+}
 
 
-  handleChange = e =>
+
+  handleChange = e => {
+    console.log('handleChange', e.target.name)
     this.setState({
       [e.target.name]: e.target.value,
     });
+  }
 
   filterProducts = (products, typeFilter, priceFilter) => {
     // Duplicate Products
+    console.log(products, typeFilter, priceFilter)
     let filteredProducts = products;
 
     // Apply Filters
