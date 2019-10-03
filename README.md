@@ -1,6 +1,6 @@
 # Ecommerce full stack site
 [General Info]
-* This website was made using MYSQL database, Node JS, and React. This project's goal was to pull information from a database and bring it into node js, place data into an API and fetch it with React.
+* The purpose of this website was to create an E-commerce store that contains filters and easy navigation. This website was made using MYSQL database, Node JS, and React. This project's goal was to pull information from a database and bring it into node js, place data into an API and fetch it with React.
 
 ## Technologies used
 Project is created with:
@@ -10,7 +10,7 @@ Project is created with:
 * MySQLWorkbench
 
 ## LAUNCH 
-To run this project, install it locally using npm:
+To run this project, install it locally (by cloning it) using npm:
 ```
 $ cd ecom-phase-3-4
 $ npm install

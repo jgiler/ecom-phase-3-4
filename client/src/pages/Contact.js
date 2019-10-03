@@ -1,7 +1,68 @@
 import React from "react";
+import CommentSection from "../components/CommentSection";
+import axios from "axios";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import UpdateContact from "./UpdateContact";
+// import { NavLink } from 'react-router-dom'
 
 class Contact extends React.Component {
+  state = {
+    f_name: "",
+    l_name: "",
+    address: "",
+    cell_number: "",
+    email: "",
+    comments: "",
+  };
+
+  handleChange(event, property) {
+    this.setState({ [property]: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert("Success " + this.state.f_name);
+    // get all contact
+    axios.get('/api/contacts').then(res => {
+        console.log(res.data.contacts)
+        let doesContactExist = false
+        for (let i = 0; i < res.data.contacts.length; i++) {
+            console.log(res.data.contacts[i])
+            console.log(this.state.email)
+            if ( res.data.contacts[i].email === this.state.email) {
+                doesContactExist = true;
+            }
+        }
+        console.log('doesContactExist - ', doesContactExist);
+        if (doesContactExist === false){
+            axios.post('/api/newcontact', {
+                f_name: this.state.f_name,
+                l_name: this.state.l_name,
+                address: this.state.address,
+                cell_number: this.state.cell_number,
+                email: this.state.email,
+                comments: this.state.comments
+            }).then(function (res) {
+                console.log(res)
+            }).catch(function (err) {
+                console.log(err)
+            })
+            alert('sucessfully added new contact')
+        }else {
+            alert('We will take you to your update page')
+            ;
+            // <NavLink></NavLink>
+            // <Router><Switch><Route path='/updatecontact/' component={UpdateContact} /></Switch></Router>
+        }
+    });
+    event.preventDefault();
+  }
+
   render() {
+    // if (this.state.success) {
+    //   return (
+    //     <div>Success</div>
+    //   );
+    // }
     return (
       <div>
         <div className="container">
@@ -13,15 +74,16 @@ class Contact extends React.Component {
               width={72}
               height={72}
             />
-            <h2>Checkout form</h2>
+            <h1>Contact us</h1>
             <p className="lead">
-              Please fill out our contact form and get more discounts later!
+              Please fill out our contact form!
             </p>
           </div>
           <div className="row" />
-          <div className="col-md-8 order-md-1">
-            <h4 className="mb-3">Billing address</h4>
-            <form className="needs-validation">
+          <div>
+            <h2 className="mb-3">Billing address</h2>
+            {/* HANDLE SUBMIT */}
+            <form className="needs-validation" onSubmit={(event) => this.handleSubmit(event)}>
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="firstName">First name</label>
@@ -29,8 +91,9 @@ class Contact extends React.Component {
                     type="text"
                     className="form-control"
                     id="firstName"
-                    defaultValue
                     required
+                    value={this.state.f_name}
+                    onChange={event => this.handleChange(event, "f_name")}
                   />
                   <div className="invalid-feedback">
                     Valid first name is required.
@@ -42,42 +105,28 @@ class Contact extends React.Component {
                     type="text"
                     className="form-control"
                     id="lastName"
-                    
-                    defaultValue
                     required
+                    value={this.state.l_name}
+                    onChange={event => this.handleChange(event, "l_name")}
                   />
                   <div className="invalid-feedback">
                     Valid last name is required.
                   </div>
                 </div>
               </div>
-              <div className="mb-3">
-                <label htmlFor="username">Username</label>
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">@</span>
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    placeholder="Username"
-                    required
-                  />
-                  <div className="invalid-feedback" style={{ width: "100%" }}>
-                    Your username is required.
-                  </div>
-                </div>
-              </div>
+              <div className="mb-3"></div>
               <div className="mb-3">
                 <label htmlFor="email">
-                  Email <span className="text-muted">(Optional)</span>
+                  Email <span className="text-muted">(Required)</span>
                 </label>
                 <input
                   type="email"
                   className="form-control"
                   id="email"
                   placeholder="you@example.com"
+                  required
+                  value={this.state.email}
+                  onChange={event => this.handleChange(event, "email")}
                 />
                 <div className="invalid-feedback">
                   Please enter a valid email address for shipping updates.
@@ -91,182 +140,37 @@ class Contact extends React.Component {
                   id="address"
                   placeholder="1234 Main St"
                   required
+                  value={this.state.address}
+                  onChange={event => this.handleChange(event, "address")}
                 />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
                 </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="address2">
-                  Address 2 <span className="text-muted">(Optional)</span>
-                </label>
+                <label htmlFor="Emergency number">Emergency number</label>
                 <input
-                  type="text"
+                  type="tel"
+                  pattern=".{10}"
                   className="form-control"
-                  id="address2"
-                  placeholder="Apartment or suite"
+                  id="validationCustom08"
+                  placeholder="Must be 10 digits"
+                  // onInput="check(this)"
+                  required
+                  value={this.state.cell_number}
+                  onChange={event => this.handleChange(event, "cell_number")}
                 />
               </div>
-              <div className="row">
-                <div className="col-md-5 mb-3">
-                  <label htmlFor="country">Country</label>
-                  <select
-                    className="custom-select d-block w-100"
-                    id="country"
-                    required
-                  >
-                    <option value>Choose...</option>
-                    <option>United States</option>
-                  </select>
-                  <div className="invalid-feedback">
-                    Please select a valid country.
-                  </div>
-                </div>
-                <div className="col-md-4 mb-3">
-                  <label htmlFor="state">State</label>
-                  <select
-                    className="custom-select d-block w-100"
-                    id="state"
-                    required
-                  >
-                    <option value>Choose...</option>
-                    <option>California</option>
-                  </select>
-                  <div className="invalid-feedback">
-                    Please provide a valid state.
-                  </div>
-                </div>
-                <div className="col-md-3 mb-3">
-                  <label htmlFor="zip">Zip</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="zip"
-                 
-                    required
-                  />
-                  <div className="invalid-feedback">Zip code required.</div>
-                </div>
-              </div>
-              <hr className="mb-4" />
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="same-address"
+
+              <div className="form-group">
+                <label htmlFor="comment">Comment:</label>
+                <textarea
+                  className="form-control"
+                  rows={5}
+                  id="comment"
+                  placeholder={"Please tell us how we did!"}
+                  value={this.state.comments}
+                  onChange={event => this.handleChange(event, "comments")}
                 />
-                <label className="custom-control-label" htmlFor="same-address">
-                  Shipping address is the same as my billing address
-                </label>
               </div>
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="save-info"
-                />
-                <label className="custom-control-label" htmlFor="save-info">
-                  Save this information for next time
-                </label>
-              </div>
-              <hr className="mb-4" />
-              <h4 className="mb-3">Payment</h4>
-              <div className="d-block my-3">
-                <div className="custom-control custom-radio">
-                  <input
-                    id="credit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="custom-control-input"
-                    defaultChecked
-                    required
-                  />
-                  <label className="custom-control-label" htmlFor="credit">
-                    Credit card
-                  </label>
-                </div>
-                <div className="custom-control custom-radio">
-                  <input
-                    id="debit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="custom-control-input"
-                    required
-                  />
-                  <label className="custom-control-label" htmlFor="debit">
-                    Debit card
-                  </label>
-                </div>
-                <div className="custom-control custom-radio">
-                  <input
-                    id="paypal"
-                    name="paymentMethod"
-                    type="radio"
-                    className="custom-control-input"
-                    required
-                  />
-                  <label className="custom-control-label" htmlFor="paypal">
-                    PayPal
-                  </label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="cc-name">Name on card</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-name"
-                    
-                    required
-                  />
-                  <small className="text-muted">
-                    Full name as displayed on card
-                  </small>
-                  <div className="invalid-feedback">
-                    Name on card is required
-                  </div>
-                </div>
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="cc-number">Credit card number</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-number"
-                    
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Credit card number is required
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-3 mb-3">
-                  <label htmlFor="cc-expiration">Expiration</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-expiration"
-                 
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Expiration date required
-                  </div>
-                </div>
-                <div className="col-md-3 mb-3">
-                  <label htmlFor="cc-cvv">CVV</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-cvv"
-                    required
-                  />
-                  <div className="invalid-feedback">Security code required</div>
-                </div>
-              </div>
-              <hr className="mb-4" />
               <button
                 className="btn btn-primary btn-lg btn-block"
                 type="submit"
@@ -274,6 +178,7 @@ class Contact extends React.Component {
                 Continue to checkout
               </button>
             </form>
+            <CommentSection className='commentSection'></CommentSection>
           </div>
         </div>
       </div>

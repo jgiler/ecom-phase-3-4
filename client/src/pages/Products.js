@@ -1,73 +1,69 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import Product from "../components/Product";
-import axios from "axios"; // Promise based HTTP client for the browser and node.js. Allows making http requests from node.js. 
-
-
+import axios from "axios"; // Promise based HTTP client for the browser and node.js. Allows making http requests from node.js. Axios works on more browsers. LESS WORK. 
 
 class Products extends React.Component {
   state = {
     products: [],
-    typeFilter: "All",
-    priceFilter: false
+    typeFilter: "",
+    priceFilter: false,
   };
 
-  componentDidMount() { // used to setState to update your component when the date is retrieved 
-    const {type} = this.props.match.params // declares varible that finds parameter set in app.js
-    this.fetchProducts({type}); 
+  componentDidMount() {
+    // used to setState to update your component when the date is retrieved
+    const { type } = this.props.match.params; // declares variable that finds parameter set in app.js
+    this.fetchProducts({ type }); // calls the function below fetch products
   }
 
-  fetchProducts = ({type}) => {
-    let ajaxRequest
+  fetchProducts = ({ type }) => {
+    let ajaxRequest;
     if (type) {
       // we want to filter on type
-      ajaxRequest = axios.get("/api/productfilter/"+encodeURIComponent(type))
+      ajaxRequest = axios.get("/api/productfilter/" + encodeURIComponent(type)); // encoder escapes certain characters so server wont misintrepet them and send something else. this encodes them first and then sends response
     } else {
-      ajaxRequest = axios.get("/api/products/")
+      ajaxRequest = axios.get("/api/products/"); // if no type specifed in url then return all products
     }
-    ajaxRequest.then(res => {
-      console.log(res.data);
-      this.setState({ products: res.data.products });
-    }).catch(err => {
-      console.log(err)
-    });
+    ajaxRequest
+      .then(res => {
+        this.setState({ products: res.data.products }); 
+      })
+      .catch(err => {
+        console.log(err)
+      });
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate = (prevProps) => {
+
+    // user
     if (this.props.match.params.type !== prevProps.match.params.type) {
-        console.log('route changed')
-        axios.get('/api/products').then(res => {
-          this.setState({products: res.data.products})
-        }).catch(err => {
-          console.log(err)
-        })
-    }
-}
-
-
+      this.fetchProducts({type: this.props.match.params.type})
+    } 
+  }
 
   handleChange = e => {
-    console.log('handleChange', e.target.name)
+    let target = e.target.name;
     this.setState({
-      [e.target.name]: e.target.value,
+      [target]: e.target.value,
+    }, () => {
+      if (target === 'typeFilter') {
+        this.fetchProducts({type: this.state.typeFilter})
+      } 
     });
-  }
+  };
 
   filterProducts = (products, typeFilter, priceFilter) => {
     // Duplicate Products
-    console.log(products, typeFilter, priceFilter)
     let filteredProducts = products;
-
+console.log('before filter', typeFilter, filteredProducts.length);
     // Apply Filters
     // Type/Category
-    if (typeFilter !== "All") {
-      console.log('sup')
+    if (typeFilter) {
       filteredProducts = filteredProducts.filter(
         product => product.category.toLowerCase() === typeFilter.toLowerCase()
-        
       );
     }
-
+    console.log('after type filter', typeFilter, filteredProducts.length);
     // Price
     if (priceFilter) {
       filteredProducts = filteredProducts.filter(
@@ -99,11 +95,12 @@ class Products extends React.Component {
               name="typeFilter"
               onChange={this.handleChange}
               as="select"
+              defaultValue={typeFilter}
             >
-              <option>All</option>
-              <option>Item</option>
-              <option>Bedroom</option>
-              <option>Clothes</option>
+              <option selected={typeFilter === ''} value="">All</option>
+              <option selected={typeFilter === 'item'} value='item'>Item</option>
+              <option selected={typeFilter === 'bedroom'} value='bedroom'>Bedroom</option>
+              <option selected={typeFilter === 'clothes'} value='clothes'>Clothes</option>
             </Form.Control>
           </Form.Group>
           <Form.Group>
