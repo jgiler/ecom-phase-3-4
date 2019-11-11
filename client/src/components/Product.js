@@ -12,7 +12,7 @@ const Product = ({ product, price, about, url, category }) => {
         <p> {about}</p>
       </div>
       <div className="product-card--meta">
-        <strong>${price}!</strong>
+        <strong>${price}</strong>
         <p>{category}</p>
       </div>
     </div>

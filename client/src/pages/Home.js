@@ -82,41 +82,41 @@ class Home extends React.Component {
               <div className="col-md-6">
                 <h2>Connect With Us</h2>
                 <hr align="left" width="50%" />
-                <p>
-                  {" "}
-                  Feel free to reach out to our development team!
-                </p>
+                <p> Feel free to reach out to our development team!</p>
               </div>
               <div className="col-md-6 social">
                 <ul className="list-inline">
                   <li className="list-inline-item">
-                    <a href="https://www.facebook.com/jonathan.giler.9">
-                      <i className="fab fa-facebook-square"></i>
+                    <a
+                      href="https://www.facebook.com/jonathan.giler.9"
+                      target="_blank"
+                    >
+                      <i className="fab fa-facebook-square connect"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fab fa-instagram"></i>
+                    <a href="#" target="_blank">
+                      <i className="fab fa-instagram connect"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fab fa-twitter-square"></i>
+                    <a href="#" target="_blank">
+                      <i className="fab fa-twitter-square connect"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fab fa-pinterest-square"></i>
+                    <a href="#" target="_blank">
+                      <i className="fab fa-pinterest-square connect"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fab fa-google-plus-square"></i>
+                    <a href="#" target="_blank">
+                      <i className="fab fa-google-plus-square connect"></i>
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fas fa-rss-square"></i>
+                    <a href="#" target="_blank">
+                      <i className="fas fa-rss-square connect"></i>
                     </a>
                   </li>
                 </ul>
@@ -200,7 +200,8 @@ class Home extends React.Component {
                   <span className="ion-minus" />
                 </h2>
                 <p>
-                  These are some of the forces that came together to provide this website.
+                  These are some of the forces that came together to provide
+                  this website.
                 </p>
                 <br />
               </div>
@@ -212,7 +213,7 @@ class Home extends React.Component {
                   alt="team-photo"
                   src="https://avatars3.githubusercontent.com/u/7431751?s=460&v=4"
                   // width="100%"
-                  height='200px'
+                  height="200px"
                 />
                 <div className="team-member">
                   <h4>Patrick Howard</h4>
@@ -229,16 +230,16 @@ class Home extends React.Component {
                 <img
                   className="img-rounded"
                   alt="team-photo"
-                  src={require('../img/JonathanGiler.jpg')}
+                  src={require("../img/JonathanGiler.jpg")}
                   // width="100%"
-                  height='200px'
+                  height="200px"
                 />
                 <div className="team-member">
                   <h4>Jonathan Giler</h4>
                   <p>Web Developer</p>
                 </div>
                 <p className="social">
-                  <a href="https://github.com/jgiler/">
+                  <a href="https://github.com/jgiler/" target="_blank">
                     <span className="fab fa-github-square" />
                   </a>
                 </p>
@@ -250,7 +251,7 @@ class Home extends React.Component {
                   alt="team-photo"
                   src="https://pbs.twimg.com/profile_images/829431121586880513/UGqLggLr_400x400.jpg"
                   // width="100%"
-                  height='200px'
+                  height="200px"
                 />
                 <div className="team-member">
                   <h4>Road to Hire</h4>

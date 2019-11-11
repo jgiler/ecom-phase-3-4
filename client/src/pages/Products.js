@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import Product from "../components/Product";
-import axios from "axios"; // Promise based HTTP client for the browser and node.js. Allows making http requests from node.js. Axios works on more browsers. LESS WORK. 
+import axios from "axios"; // Promise based HTTP client for the browser and node.js. Allows making http requests from node.js. Axios works on more browsers. LESS WORK.
 
 class Products extends React.Component {
   state = {
@@ -16,6 +16,7 @@ class Products extends React.Component {
     this.fetchProducts({ type }); // calls the function below fetch products
   }
 
+  // fetches API endpoints
   fetchProducts = ({ type }) => {
     let ajaxRequest;
     if (type) {
@@ -26,36 +27,38 @@ class Products extends React.Component {
     }
     ajaxRequest
       .then(res => {
-        this.setState({ products: res.data.products }); 
+        this.setState({ products: res.data.products });
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       });
   };
 
-  componentDidUpdate = (prevProps) => {
-
+  componentDidUpdate = prevProps => {
     // user
     if (this.props.match.params.type !== prevProps.match.params.type) {
-      this.fetchProducts({type: this.props.match.params.type})
-    } 
-  }
+      this.fetchProducts({ type: this.props.match.params.type });
+    }
+  };
 
   handleChange = e => {
     let target = e.target.name;
-    this.setState({
-      [target]: e.target.value,
-    }, () => {
-      if (target === 'typeFilter') {
-        this.fetchProducts({type: this.state.typeFilter})
-      } 
-    });
+    this.setState(
+      {
+        [target]: e.target.value,
+      },
+      () => {
+        if (target === "typeFilter") {
+          this.fetchProducts({ type: this.state.typeFilter });
+        }
+      }
+    );
   };
 
   filterProducts = (products, typeFilter, priceFilter) => {
     // Duplicate Products
     let filteredProducts = products;
-console.log('before filter', typeFilter, filteredProducts.length);
+    console.log("before filter", typeFilter, filteredProducts.length);
     // Apply Filters
     // Type/Category
     if (typeFilter) {
@@ -63,11 +66,11 @@ console.log('before filter', typeFilter, filteredProducts.length);
         product => product.category.toLowerCase() === typeFilter.toLowerCase()
       );
     }
-    console.log('after type filter', typeFilter, filteredProducts.length);
+    console.log("after type filter", typeFilter, filteredProducts.length);
     // Price
     if (priceFilter) {
       filteredProducts = filteredProducts.filter(
-        product => product.price <= parseInt(priceFilter)
+        product => product.price <= parseInt(priceFilter) // JONATHAN PROBLEM
       );
     }
 
@@ -89,7 +92,7 @@ console.log('before filter', typeFilter, filteredProducts.length);
       <div className="wrapper">
         {/* Filters */}
         <Form>
-          <Form.Group>
+          <Form.Group className="filter">
             <Form.Label>Filter by Type</Form.Label>
             <Form.Control
               name="typeFilter"
@@ -97,13 +100,21 @@ console.log('before filter', typeFilter, filteredProducts.length);
               as="select"
               defaultValue={typeFilter}
             >
-              <option selected={typeFilter === ''} value="">All</option>
-              <option selected={typeFilter === 'item'} value='item'>Item</option>
-              <option selected={typeFilter === 'bedroom'} value='bedroom'>Bedroom</option>
-              <option selected={typeFilter === 'clothes'} value='clothes'>Clothes</option>
+              <option selected={typeFilter === ""} value="">
+                All
+              </option>
+              <option selected={typeFilter === "item"} value="item">
+                Item
+              </option>
+              <option selected={typeFilter === "bedroom"} value="bedroom">
+                Bedroom
+              </option>
+              <option selected={typeFilter === "clothes"} value="clothes">
+                Clothes
+              </option>
             </Form.Control>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="filter">
             <Form.Label>Enter Your Maximum Price</Form.Label>
             <Form.Control
               name="priceFilter"

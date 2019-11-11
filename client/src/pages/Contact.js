@@ -6,6 +6,7 @@ import axios from "axios";
 // import { NavLink } from 'react-router-dom'
 
 class Contact extends React.Component {
+  
   state = {
     f_name: "",
     l_name: "",
@@ -21,7 +22,7 @@ class Contact extends React.Component {
 
   handleSubmit(event) {
     alert("Success " + this.state.f_name);
-    // get all contact
+    // get all contacts
     axios.get('/api/contacts').then(res => {
         console.log(res.data.contacts)
         let doesContactExist = false
@@ -47,12 +48,11 @@ class Contact extends React.Component {
                 console.log(err)
             })
             alert('sucessfully added new contact')
-        }else {
+        } else {
             alert('We will take you to your update page')
             ;
             // <NavLink></NavLink>
-            // <Router><Switch><Route path='/updatecontact/' component={UpdateContact} /></Switch></Router>
-        }
+       }
     });
     event.preventDefault();
   }

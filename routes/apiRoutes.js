@@ -44,13 +44,6 @@ router.get("/productfilter/:category", function(req, res) {
 
 
 
-// get information about product
-// did information query succeeed? 
-//  - no: return error
-//  - yes: get information about contacts that want product
-//          did information query succeed?
-//          - no: return error
-//          - yes:  return product information as well as contact list
 
 
 router.get('/productinvoice/:productID', function(req,res) {

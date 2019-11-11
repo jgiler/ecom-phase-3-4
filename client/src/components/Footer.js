@@ -4,41 +4,6 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => (
   <footer className="page-footer font-small cyan darken-3">
-    {/* <div className="footer">
-      <ul>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/jonathan-giler-a89682151/"
-            // eslint-disable-next-line react/jsx-no-target-blank
-            target="_blank"
-            className="fa fa-linkedin"
-          >
-            Linkedin
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.instagram.com/jonathangiler/"
-            // eslint-disable-next-line react/jsx-no-target-blank
-            target="_blank"
-            className="fa fa-instagram"
-          >
-            Instagram
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.facebook.com/jonathan.giler.9"
-            // eslint-disable-next-line react/jsx-no-target-blank
-            target="_blank"
-            className="fab fa-facebook-square"
-          >
-            Facebook
-          </a>
-        </li>
-      </ul>
-      <p className="copyright">Copyright 2019, Jonathan Giler</p>
-      <p>Last updated: Friday, August 16th, 2019</p> */}
     <div className="container">
       {/* Grid row*/}
       <div className="row">
@@ -46,37 +11,37 @@ const Footer = () => (
         <div className="col-md-12 py-5" id="social-icon">
           <div className=" flex-center">
             {/* Facebook */}
-            <a className="fb-ic" href='https://www.facebook.com/jonathan.giler.9'>
+            <a className="fb-ic" href='https://www.facebook.com/jonathan.giler.9' target='_blank'>
               <i className="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x">
-                {" "}
+                
               </i>
             </a>
             {/* Twitter */}
-            <a className="tw-ic" href='https://twitter.com/'>
+            <a className="tw-ic" href='https://twitter.com/' target='_blank'>
               <i className="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x">
-                {" "}
+                
               </i>
             </a>
             {/* Google +*/}
-            <a className="gplus-ic" href='https://aboutme.google.com/u/0/?referer=gplus'>
+            <a className="gplus-ic" href='https://aboutme.google.com/u/0/?referer=gplus' target='_blank'>
               <i className="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x">
-                {" "}
+         
               </i>
             </a>
             {/*Linkedin */}
-            <a className="li-ic" href='https://www.linkedin.com/feed/'>
+            <a className="li-ic" href='https://www.linkedin.com/feed/' target='_blank'>
               <i className="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x">
-                {" "}
+              
               </i>
             </a>
             {/*Instagram*/}
-            <a className="ins-ic" href='#'>
+            <a className="ins-ic" href='#' target='_blank'>
               <i className="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x">
-                {" "}
+                
               </i>
             </a>
             {/*Pinterest*/}
-            <a className="pin-ic" href='#'>
+            <a className="pin-ic" href='#' target='_blank'>
               <i className="fab fa-pinterest fa-lg white-text fa-2x"> </i>
             </a>
           </div>
